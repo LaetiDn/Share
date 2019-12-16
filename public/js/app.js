@@ -37004,7 +37004,17 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Modal delete
+
+
+$(document).ready(function () {
+  // Modal delete
+  function handleDelete(id) {
+    var form = document.getElementById('deleteCategoryForm');
+    form.action = '/categories/' + id;
+    $('#deleteModal').modal('show');
+  }
+});
 
 /***/ }),
 

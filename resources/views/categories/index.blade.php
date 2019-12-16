@@ -26,6 +26,7 @@
                     </td>
                     <td>
                         <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info btn-sm">Edit</a>
+                        <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $category->id }})">Delete</button>
                     </td>
                 </tr>
                 @endforeach
@@ -33,5 +34,17 @@
         </table>
     </div>
 </div>
+
+@include('modal.delete')
+
+@endsection
+@section('scripts')
+<script>
+    function handleDelete(id) {
+    var form = document.getElementById('deleteCategoryForm')
+    form.action = '/categories/' + id
+    $('#deleteModal').modal('show')
+  }
+</script>
 
 @endsection
