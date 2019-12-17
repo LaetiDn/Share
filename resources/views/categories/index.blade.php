@@ -39,7 +39,7 @@
     </div>
 </div>
 
-@include('modal.delete')
+@include('partials.modal.delete')
 
 @endsection
 @section('scripts')

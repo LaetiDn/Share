@@ -39,13 +39,13 @@
     </div>
 </div>
 
-@include('modal.delete')
+@include('partials.modal.delete')
 
 @endsection
 @section('scripts')
 <script>
     function handleDelete(id) {
-    var form = document.getElementById('deletetagForm')
+    var form = document.getElementById('deleteCategoryForm')
     form.action = '/tags/' + id
     $('#deleteModal').modal('show')
   }
