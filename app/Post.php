@@ -15,4 +15,14 @@ class Post extends Model
         'content',
         'image',
         'published_at'];
+
+    /**
+     * Delete posts image from storage
+     *
+     * @return void
+     */
+    public function deleteImage()
+    {
+        Storage::delete($this->image);
+    }
 }
