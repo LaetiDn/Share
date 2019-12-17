@@ -11,7 +11,7 @@
 
 <div class="card card-default">
     <div class="card-header">
-        Categories
+        Posts
     </div>
     <div class="card-body">
         <table class="table">
@@ -22,11 +22,25 @@
                 @foreach ($posts as $post)
                 <tr>
                     <td>
-                        {{ $category->name }}
+                        <img src="{{$post->image}}" width="120px" height="60px" alt="post image">
                     </td>
                     <td>
-                        <a href="{{ route('posts.edit', $category->id) }}" class="btn btn-info btn-sm">Edit</a>
-                        <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $post->id }})">Delete</button>
+                        {{ $post->title }}
+                    </td>
+                    @if(!$post->trashed())
+                    <td>
+                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm">Edit</a>
+                    </td>
+                    @endif
+                    <td>
+                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm">
+                                {{ $post->trashed() ? 'Delete' : 'Trash' }}
+
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
@@ -34,6 +48,4 @@
         </table>
     </div>
 </div>
-
-
 @endsection

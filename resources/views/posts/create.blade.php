@@ -17,7 +17,6 @@
                 </li>
                 @endforeach
             </ul>
-
         </div>
         @endif
         <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store') }}" method="POST" enctype="multipart/form-data">
@@ -26,21 +25,20 @@
                 @method('PUT')
             @endif
             <div class="form-group">
-                <input type="text" class="form-control" name="title" id="title" value="{{ isset($post) ? $post->title : '' }}" placeholder="{{ isset($post) ? $post->name : 'Name' }}">
+                <input type="text" class="form-control" name="title" id="title" value="{{ isset($post) ? $post->title : '' }}" placeholder="{{ isset($post) ? $post->name : 'Title' }}">
             </div>
 
             <div class="form-group">
-                <textarea type="text" class="form-control" name="description" id="description" cols="5" rows="5" value="{{ isset($post) ? $post->description : '' }}" placeholder="{{ isset($post) ? $post->name : 'Description' }}">
+                <textarea class="form-control" name="description" id="description" cols="5" rows="5" value="{{ isset($post) ? $post->description : '' }}" placeholder="{{ isset($post) ? $post->description : 'Description' }}"></textarea>
             </div>
 
             <div class="form-group">
-                <textarea type="text" class="form-control" name="content" id="content" cols="5" rows="5" value="{{ isset($post) ? $post->content : '' }}" placeholder="{{ isset($post) ? $post->content : 'Content' }}">
+                <textarea class="form-control" name="content" id="content" cols="5" rows="5" value="{{ isset($post) ? $post->content : '' }}" placeholder="{{ isset($post) ? $post->content : 'Content' }}"></textarea>
             </div>
 
             <div class="form-group">
                 <input type="text" class="form-control" name="published_at" id="published_at" value="{{ isset($post) ? $post->published_at : '' }}" placeholder="{{ isset($post) ? $post->published_at : 'Published at' }}">
             </div>
-
 
             <div class="form-group">
                 <input type="file" class="form-control" name="image" id="image" value="{{ isset($post) ? $post->published_at : '' }}" placeholder="{{ isset($post) ? $post->published_at : 'Image' }}">

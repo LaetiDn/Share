@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Posts\CreatePostsRequest;
 use App\Post;
 
 class PostsController extends Controller
@@ -93,6 +94,33 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::withTrashed()->where('id', $id)->firstOrFail();
+
+        if($post->trashed()) {
+            $post->forceDelete();
+        } else {
+            $post->delete();
+        }
+
+
+        session()->flash('success', 'Post deleted successfully! ');
+
+        return redirect(route('posts.index'));
+
+    }
+
+
+    /**
+     * Display a list of trashed post
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function trashed()
+    {
+        $trashed = Post::withTrashed()->get();
+
+        return view('posts.index')->with('posts', $trashed);
+
     }
 }
