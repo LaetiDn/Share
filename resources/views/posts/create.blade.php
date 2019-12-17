@@ -5,7 +5,7 @@
 
 <div class="card card-default">
     <div class="card-header">
-        {{ isset($category)  ? 'Edit posts' : 'Create Posts' }}
+        {{ isset($post)  ? 'Edit posts' : 'Create Posts' }}
     </div>
     <div class="card-body">
         @if($errors->any())
@@ -28,17 +28,17 @@
             <div class="form-group">
                 <input type="text" class="form-control" name="title" id="title"
                     value="{{ isset($post) ? $post->title : '' }}"
-                    placeholder="{{ isset($post) ? $post->name : 'Title' }}">
+                    placeholder="{{ isset($post) ? $post->title : 'Title' }}">
             </div>
+
 
             <div class="form-group">
                 <textarea class="form-control" name="description" id="description" cols="5" rows="5"
-                    value="{{ isset($post) ? $post->description : '' }}"
-                    placeholder="{{ isset($post) ? $post->description : 'Description' }}"></textarea>
+                    value="{{ isset($post) ? $post->description : '' }}" placeholder="{{ !isset($post) ? 'Description' : '' }}">{{ isset($post) ? $post->description : '' }}</textarea>
             </div>
 
             <div class="form-group">
-                <input id="content" type="hidden" name="content">
+                <input id="content" type="hidden" name="content" value="{{ isset($post) ? $post->content : '' }}">
                 <trix-editor input="content"></trix-editor>
             </div>
 
@@ -48,10 +48,15 @@
                     placeholder="{{ isset($post) ? $post->published_at : 'Published at' }}">
             </div>
 
+            @if(isset($post))
             <div class="form-group">
-                <input type="file" class="form-control" name="image" id="image"
-                    value="{{ isset($post) ? $post->published_at : '' }}"
-                    placeholder="{{ isset($post) ? $post->published_at : 'Image' }}">
+                <img src="{{ asset($post->image )}}" width="100%" alt="post image">
+            </div>
+
+            @endif
+
+            <div class="form-group">
+                <input type="file" class="form-control" name="image" id="image">
             </div>
 
             <div class="class-group">
@@ -66,7 +71,15 @@
 @endsection
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+    flatpickr('#published_at', {
+        enableTime: true
+    });
+</script>
 @endsection
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endsection
