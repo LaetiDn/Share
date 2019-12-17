@@ -31,7 +31,7 @@
                         {{ $post->title }}
                     </td>
                     <td>
-                        {{ $post->category->name }}
+                        {{-- {{ $post->category->name }} --}}
                     </td>
                     @if($post->trashed())
                     <td>
