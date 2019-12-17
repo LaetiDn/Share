@@ -97,6 +97,7 @@ class PostsController extends Controller
         $post = Post::withTrashed()->where('id', $id)->firstOrFail();
 
         if($post->trashed()) {
+            Storage::delete($post->image);
             $post->forceDelete();
         } else {
             $post->delete();

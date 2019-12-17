@@ -14,6 +14,7 @@
         Posts
     </div>
     <div class="card-body">
+        @if($posts->count() > 0)
         <table class="table">
             <thead>
                 <th><strong>Name</strong></th>
@@ -46,6 +47,12 @@
                 @endforeach
             </tbody>
         </table>
+        @else
+        <thead>
+                <th><strong>No Posts yet !</strong></th>
+            </thead>
+
+        @endif
     </div>
 </div>
 @endsection
