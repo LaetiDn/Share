@@ -76,13 +76,18 @@
                 <label for="category">Category</label>
                 <select name="category" id="category" class="form-control">
                     @foreach($categories as $category)
-                    <option value="{{ $category->id }}">
+                    <option value="{{ $category->id }}"
+                        @if(isset($post))
+                            @if($category->id === $post->category_id)
+                                selected
+                            @endif
+                        @endif
+                        >
                         {{ $category->name }}
                     </option>
                     @endforeach
                 </select>
             </div>
-
 
             <div class="class-group">
                 <button class="btn btn-success">

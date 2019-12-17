@@ -17,7 +17,9 @@
         @if($posts->count() > 0)
         <table class="table">
             <thead>
+                <th><strong>Image</strong></th>
                 <th><strong>Name</strong></th>
+                <th><strong>category</strong></th>
             </thead>
             <tbody>
                 @foreach ($posts as $post)
@@ -27,6 +29,9 @@
                     </td>
                     <td>
                         {{ $post->title }}
+                    </td>
+                    <td>
+                        {{ $post->category->name }}
                     </td>
                     @if($post->trashed())
                     <td>
