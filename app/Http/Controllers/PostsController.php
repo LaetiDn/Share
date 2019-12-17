@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\Posts\CreatePostsRequest;
 use App\Http\Requests\Posts\UpdatePostsRequest;
@@ -26,7 +27,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create')->with('categories', Category::all());
     }
 
     /**
@@ -45,7 +46,10 @@ class PostsController extends Controller
                 'description'   => $request->description,
                 'content'       => $request->content,
                 'image'         => $image,
-                'published_at'  => $request->published_at
+                'published_at'  => $request->published_at,
+                'category_id'   => $request->category,
+                'adress'        => $request->adress,
+                'country'       => $request->country,
             ]
         );
 
@@ -73,7 +77,11 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.create')->with('post', $post);
+        return view('posts.create')->with(
+            [
+            'post'=> $post,
+            'categories' => Category::all()]
+        );
     }
 
     /**
@@ -85,7 +93,7 @@ class PostsController extends Controller
      */
     public function update(UpdatePostsRequest $request, Post $post)
     {
-        $data = $request->only(['title', 'description', 'content', 'published_at']);
+        $data = $request->only(['title', 'description', 'content', 'published_at', 'category_id', 'adress', 'country']);
         if ($request->hasFile('image')) {
 
             $image = $request->image->store('posts');

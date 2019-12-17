@@ -31,16 +31,29 @@
                     placeholder="{{ isset($post) ? $post->title : 'Title' }}">
             </div>
 
+            <div class="form-group">
+                <input type="text" class="form-control" name="adress" id="adress"
+                    value="{{ isset($post) ? $post->adress : '' }}"
+                    placeholder="{{ isset($post) ? $post->adress : 'adress' }}">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="country" id="country"
+                    value="{{ isset($post) ? $post->country : '' }}"
+                    placeholder="{{ isset($post) ? $post->country : 'country' }}">
+            </div>
 
             <div class="form-group">
                 <textarea class="form-control" name="description" id="description" cols="5" rows="5"
-                    value="{{ isset($post) ? $post->description : '' }}" placeholder="{{ !isset($post) ? 'Description' : '' }}">{{ isset($post) ? $post->description : '' }}</textarea>
+                    value="{{ isset($post) ? $post->description : '' }}"
+                    placeholder="{{ !isset($post) ? 'Description' : '' }}">{{ isset($post) ? $post->description : '' }}</textarea>
             </div>
 
             <div class="form-group">
                 <input id="content" type="hidden" name="content" value="{{ isset($post) ? $post->content : '' }}">
                 <trix-editor input="content"></trix-editor>
             </div>
+
 
             <div class="form-group">
                 <input type="text" class="form-control" name="published_at" id="published_at"
@@ -59,6 +72,18 @@
                 <input type="file" class="form-control" name="image" id="image">
             </div>
 
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select name="category" id="category" class="form-control">
+                    @foreach($categories as $category)
+                    <option value="{{ $category->id }}">
+                        {{ $category->name }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+
+
             <div class="class-group">
                 <button class="btn btn-success">
                     {{ isset($post) ? 'Update Post': 'Add Post' }}
@@ -75,8 +100,8 @@
 
 <script>
     flatpickr('#published_at', {
-        enableTime: true
-    });
+            enableTime: true
+        });
 </script>
 @endsection
 @section('css')

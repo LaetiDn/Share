@@ -1,7 +1,7 @@
 <?php
-
 namespace App;
 
+use App\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,7 +14,21 @@ class Post extends Model
         'description',
         'content',
         'image',
-        'published_at'];
+        'published_at',
+        'category_id',
+        'adress',
+        'country'
+    ];
+
+    /**
+     * BelongsTo relationships with category
+     *
+     * @return void
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
     /**
      * Delete posts image from storage

@@ -7,4 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $fillable = ['name'];
+
+    /**
+     * Post relationship
+     *
+     * @return mixed
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
