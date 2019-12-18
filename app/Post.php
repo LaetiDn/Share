@@ -50,4 +50,14 @@ class Post extends Model
     {
         Storage::delete($this->image);
     }
+
+    /**
+     * Check if hastag
+     *
+     * @return void
+     */
+    public function hasTag($tagId)
+    {
+        return in_array($tagId, $this->tags->pluck('id')->toArray());
+    }
 }

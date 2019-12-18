@@ -103,7 +103,7 @@ class PostsController extends Controller
     public function update(UpdatePostsRequest $request, Post $post)
     {
         $data = $request->only(['title', 'description', 'content', 'published_at', 'category_id', 'adress', 'country']);
-        dd($data);
+
         if ($request->hasFile('image')) {
 
             $image = $request->image->store('posts');
@@ -111,6 +111,10 @@ class PostsController extends Controller
             $post->deleteImage();
             $data['image'] = $image;
         };
+
+        if ($request->tags) {
+            $post->tags()->sync($request->tags);
+        }
 
         $post->update($data);
 
