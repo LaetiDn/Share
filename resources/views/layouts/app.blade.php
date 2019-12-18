@@ -78,15 +78,20 @@
 
         <main class="py-4">
             @if(session()->has('success'))
-                <div class="alert alert-success">
-                    {{ session()->get('success') }}
-                </div>
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
             @endif
             @auth
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-4">
                         <ul class="list-group">
+                            @if(auth()->user()->hasRole('Admin'))
+                            <li class="list-group-item">
+                                <a href="">Users</a>
+                            </li>
+                            @endif
                             <li class="list-group-item">
                                 <a href="{{ route('posts.index') }} ">Posts</a>
                             </li>
@@ -99,10 +104,10 @@
                         </ul>
 
                         <ul class="list-group mt-5">
-                                <li class="list-group-item">
-                                    <a href="{{ route('trashed-posts.index') }} ">Trashed Posts</a>
-                                </li>
-                            </ul>
+                            <li class="list-group-item">
+                                <a href="{{ route('trashed-posts.index') }} ">Trashed Posts</a>
+                            </li>
+                        </ul>
                     </div>
                     <div class="col-md-8">
                         @yield('content')
@@ -114,8 +119,8 @@
             @endauth
         </main>
     </div>
-   <!-- Scripts -->
-   <script src="{{ asset('js/app.js') }}" ></script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
 
     @yield('scripts')
 

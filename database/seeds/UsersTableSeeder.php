@@ -15,7 +15,6 @@ class UsersTableSeeder extends Seeder
     {
 
         $user = User::where('email', 'laetitia@ctrlweb.ca')->first();
-        $user->assignRole($admin);
 
         if (!$user) {
             User::create([
@@ -26,7 +25,8 @@ class UsersTableSeeder extends Seeder
                 'password'  => Hash::make('password'),
                 ]
             );
-            $user->assignRole($admin);
         }
+        $user->assignRole('Admin');
+        $user->save();
     }
 }
