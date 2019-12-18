@@ -21,6 +21,7 @@
                 <button type="submit" class="btn btn-success">
                     {{ isset($tag) ? 'Update tag': 'Add tag' }}
                 </button>
+                <a href="{{url()->previous()}}" class="btn btn-danger ml-2">Cancel</a>
             </div>
         </form>
     </div>

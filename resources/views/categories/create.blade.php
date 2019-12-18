@@ -22,6 +22,7 @@
                     {{ isset($category) ? 'Update Category': 'Add Category' }}
                 </button>
             </div>
+            <a href="{{url()->previous()}}" class="btn btn-danger ml-2">Cancel</a>
         </form>
     </div>
 </div>
