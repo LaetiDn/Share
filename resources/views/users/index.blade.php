@@ -31,8 +31,19 @@
                         {{ $user->name }}
                     </td>
                     <td>
-                        {{ $user->name }}
+                        {{ $user->username }}
                     </td>
+                    @if(auth()->user()->hasRole('Admin'))
+                    <td>
+                        <button class="btn btn-success btn-sm">Make Admin</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-success btn-sm">Make Editor</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-success btn-sm">Make Host</button>
+                    </td>
+                    @endif
                     {{-- @if($user->trashed())
                     <td>
                         <form action="{{ route('restore-users', $user->id)}}" method="user">
