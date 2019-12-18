@@ -50,7 +50,7 @@ class PostsController extends Controller
                 'content'       => $request->content,
                 'image'         => $image,
                 'published_at'  => $request->published_at,
-                'category_id'   => $request->category,
+                'category_id'   => $request->category_id,
                 'adress'        => $request->adress,
                 'country'       => $request->country,
 
@@ -104,12 +104,13 @@ class PostsController extends Controller
     public function update(UpdatePostsRequest $request, Post $post)
     {
         $data = $request->only(['title', 'description', 'content', 'published_at', 'category_id', 'adress', 'country']);
+
         if ($request->hasFile('image')) {
 
             $image = $request->image->store('posts');
 
             $post->deleteImage();
-            $date['image'] = $image;
+            $data['image'] = $image;
         };
 
         $post->update($data);

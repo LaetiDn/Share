@@ -64,8 +64,8 @@
             </div>
 
             <div class="form-group">
-                <label for="category *">Category</label>
-                <select name="category" id="category" class="form-control" required>
+                <label for="category_id">Category</label>
+                <select name="category_id" id="category_id" class="form-control" required>
                     @foreach($categories as $category)
                     <option value="{{ $category->id }}"
                         @if(isset($post))
@@ -79,7 +79,7 @@
                     @endforeach
                 </select>
             </div>
-
+{{--
             @if($tags->count() > 0)
             <div class="form-group">
                 <label for="tags">Tags</label>
@@ -89,7 +89,7 @@
                     @endforeach
                 </select>
             </div>
-            @endif
+            @endif --}}
 
             <div class="class-group">
                 <button class="btn btn-success">
