@@ -57,7 +57,7 @@ class PostsController extends Controller
             ]
         );
 
-        if ($request->tags ) {
+        if($request->tags ) {
             $post->tags()->attach($request->tags);
         }
 

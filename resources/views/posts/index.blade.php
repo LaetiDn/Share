@@ -30,9 +30,11 @@
                     <td>
                         {{ $post->title }}
                     </td>
+                    @if(!empty($post->category->name))
                     <td>
-                        {{-- {{ $post->category->name }} --}}
+                        {{ $post->category->name }}
                     </td>
+                    @endif
                     @if($post->trashed())
                     <td>
                         <form action="{{ route('restore-posts', $post->id)}}" method="POST">
