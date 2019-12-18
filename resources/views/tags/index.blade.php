@@ -23,7 +23,7 @@
                 @foreach ($tags as $tag)
                 <tr>
                     <td>
-                        {{ $tag->name }}
+                        {{ $tag->posts->count() }}
                     </td>
                     <td>
 
