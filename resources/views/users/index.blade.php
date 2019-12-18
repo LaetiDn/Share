@@ -35,22 +35,24 @@
                     </td>
                     @if(auth()->user()->hasRole('Admin'))
                     <td>
-                        <button class="btn btn-success btn-sm">Make Admin</button>
+                        <button class="btn btn-danger btn-sm" onclick="handleChangeRole({{ $user->id }})" data-role="admin">Make Admin</button>
                     </td>
                     <td>
-                        <button class="btn btn-success btn-sm">Make Editor</button>
+                        <button class="btn btn-danger btn-sm" onclick="handleChangeRole({{ $user->id }})" data-role="editor">Make Editor</button>
                     </td>
                     <td>
-                        <button class="btn btn-success btn-sm">Make Host</button>
+                        <button class="btn btn-danger btn-sm" onclick="handleChangeRole({{ $user->id }})" data-role="host">Make Host</button>
                     </td>
+
+
                     @endif
                     {{-- @if($user->trashed())
                     <td>
                         <form action="{{ route('restore-users', $user->id)}}" method="user">
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-primary btn-sm">Restore</button>
-                        </form>
+                    @csrf
+                    @method('PUT')
+                    <button type="submit" class="btn btn-primary btn-sm">Restore</button>
+                    </form>
                     </td>
                     @else
                     <td>
@@ -80,4 +82,18 @@
         @endif
     </div>
 </div>
+@include('partials.modal.change-role')
+
+@endsection
+
+@endsection
+@section('scripts')
+<script>
+    function handleChangeRole(id) {
+    var form = document.getElementById('changeUserRole')
+    form.action = '/change-role/' + id
+    $('#changeRoleModal').modal('show')
+  }
+</script>
+
 @endsection

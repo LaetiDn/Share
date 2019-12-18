@@ -1,11 +1,11 @@
 require('./bootstrap');
 
-// Modal delete
+// change role user
 
 
 $( document ).ready(function() {
 
-    // Modal delete
+// change role user
 function handleDelete(id) {
     var form = document.getElementById('deleteCategoryForm')
     form.action = '/categories/' + id
