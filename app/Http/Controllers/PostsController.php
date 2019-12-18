@@ -29,7 +29,9 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create')->with('categories', Category::all())->with('tags', Tag::all());
+        $tags = Tag::all();
+
+        return view('posts.create', ['tags' => $tags])->with('categories', Category::all());
     }
 
     /**
@@ -57,7 +59,7 @@ class PostsController extends Controller
             ]
         );
 
-        if($request->tags ) {
+        if ($request->tags) {
             $post->tags()->attach($request->tags);
         }
 
@@ -85,13 +87,10 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.create')->with(
-            [
-            'post'=> $post,
-            'categories' => Category::all(),
-            'tags', Tag::all(),
-            ]
-        );
+
+        $tags = Tag::all();
+
+        return view('posts.create', ['tags' => $tags,  'post' => $post])->with('categories', Category::all());
     }
 
     /**
@@ -104,7 +103,7 @@ class PostsController extends Controller
     public function update(UpdatePostsRequest $request, Post $post)
     {
         $data = $request->only(['title', 'description', 'content', 'published_at', 'category_id', 'adress', 'country']);
-
+        dd($data);
         if ($request->hasFile('image')) {
 
             $image = $request->image->store('posts');
