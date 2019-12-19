@@ -15,10 +15,14 @@ class UsersController extends Controller
 
     public function changeUserRole(Request $request, User $user)
     {
+        $user->roles()->sync($$request->roles);
 
-        dd('yAaay Im fucking here');
+        dd($roles);
 
-        $roles = $request->roles;
+        session()->flash('success', 'User role changed successfully');
+
+        return redirect()->back();
+
 
     }
 }

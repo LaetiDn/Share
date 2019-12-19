@@ -38,13 +38,16 @@
                     </td>
                     @if(auth()->user()->hasRole('Admin'))
                     <td>
-                        <button class="btn btn-danger btn-sm btn-change-role" onclick="handleChangeRole(this)" data-id="{{ $user->id }}" data-role="admin">Make Admin</button>
+                        <button class="btn btn-danger btn-sm btn-change-role" onclick="handleChangeRole(this)" data-id="{{ $user->id }}" data-role="$admin">Make Admin</button>
                     </td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-change-role" onclick="handleChangeRole(this)" data-id="{{ $user->id }}" data-role="editor">Make Editor</button>
+                        <button class="btn btn-danger btn-sm btn-change-role" onclick="handleChangeRole(this)" data-id="{{ $user->id }}" data-role="$editor">Make Editor</button>
                     </td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-change-role" onclick="handleChangeRole(this)" data-id="{{ $user->id }}" data-role="host">Make Host</button>
+                        <button class="btn btn-danger btn-sm btn-change-role" onclick="handleChangeRole(this)" data-id="{{ $user->id }}" data-role="$host">Make Host</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-sm btn-change-role" onclick="handleChangeRole(this)" data-id="{{ $user->id }}" data-role="$writter">Make Writter</button>
                     </td>
 
 
