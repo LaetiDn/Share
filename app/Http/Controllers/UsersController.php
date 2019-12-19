@@ -12,4 +12,13 @@ class UsersController extends Controller
 
         return view('users.index')->with('users', User::all());
     }
+
+    public function changeUserRole(Request $request, User $user)
+    {
+
+        dd('yAaay Im fucking here');
+
+        $roles = $request->roles;
+
+    }
 }

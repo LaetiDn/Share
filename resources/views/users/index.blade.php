@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('meta_tags')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 
 
 @section('content')
@@ -35,13 +38,13 @@
                     </td>
                     @if(auth()->user()->hasRole('Admin'))
                     <td>
-                        <button class="btn btn-danger btn-sm" onclick="handleChangeRole({{ $user->id }})" data-role="admin">Make Admin</button>
+                        <button class="btn btn-danger btn-sm btn-change-role" onclick="handleChangeRole(this)" data-id="{{ $user->id }}" data-role="admin">Make Admin</button>
                     </td>
                     <td>
-                        <button class="btn btn-danger btn-sm" onclick="handleChangeRole({{ $user->id }})" data-role="editor">Make Editor</button>
+                        <button class="btn btn-danger btn-sm btn-change-role" onclick="handleChangeRole(this)" data-id="{{ $user->id }}" data-role="editor">Make Editor</button>
                     </td>
                     <td>
-                        <button class="btn btn-danger btn-sm" onclick="handleChangeRole({{ $user->id }})" data-role="host">Make Host</button>
+                        <button class="btn btn-danger btn-sm btn-change-role" onclick="handleChangeRole(this)" data-id="{{ $user->id }}" data-role="host">Make Host</button>
                     </td>
 
 
@@ -86,13 +89,38 @@
 
 @endsection
 
-@endsection
 @section('scripts')
 <script>
-    function handleChangeRole(id) {
-    var form = document.getElementById('changeUserRole')
-    form.action = '/change-role/' + id
-    $('#changeRoleModal').modal('show')
+
+    function handleChangeRole(obj) {
+
+     var roles = obj.getAttribute("data-role");
+     var user_id = obj.getAttribute("data-id");
+     console.log(user_id);
+      console.log(roles);
+
+    $.ajax({
+        url: '/users/'+ user_id + '/change-role',
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            roles: roles
+            }),
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function () {
+               console.log('success');
+                },
+                error: function (err) {
+                    console.log('Error!', err);
+                },
+            });
+
+    // var form = document.getElementById('changeUserRole')
+    // form.action = '/change-role/' + id +
+    // $('#changeRoleModal').modal('show')
   }
 </script>
 

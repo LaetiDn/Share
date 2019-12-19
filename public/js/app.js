@@ -37004,16 +37004,10 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Modal delete
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // change role user
 
 
-$(document).ready(function () {
-  // Modal delete
-  function handleDelete(id) {
-    var form = document.getElementById('deleteCategoryForm');
-    form.action = '/categories/' + id;
-    $('#deleteModal').modal('show');
-  }
+$(document).ready(function () {// change role user
 });
 
 /***/ }),
@@ -37081,8 +37075,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/laetitia/code/Share/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/laetitia/code/Share/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/laetitia/code/Convergence/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/laetitia/code/Convergence/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

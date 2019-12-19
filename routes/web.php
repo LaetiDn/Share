@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group( function () {
 
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('users', 'UsersController@index')->name('users.index');
+    Route::post('users/{user}/change-role', 'UsersController@changeUserRole')->name('users.change-role');
 });
 
 
