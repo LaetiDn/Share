@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -10,14 +11,13 @@ class UsersController extends Controller
     public function index()
     {
 
-        return view('users.index')->with('users', User::all());
+        $roles = Role::pluck('name', 'id');
+        return view('users.index', compact('roles'))->with('users', User::all());
     }
 
     public function changeUserRole(Request $request, User $user)
     {
-        $user->roles()->sync($$request->roles);
-
-        dd($roles);
+        $user->roles()->attach($request->roles);
 
         session()->flash('success', 'User role changed successfully');
 

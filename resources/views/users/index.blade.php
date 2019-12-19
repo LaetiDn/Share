@@ -36,6 +36,10 @@
                     <td>
                         {{ $user->username }}
                     </td>
+                    <td>
+                            {{ implode(', ', $user->roles->pluck('name')->toArray()) }}
+                    </td>
+
                     @if(auth()->user()->hasRole('Admin'))
                     <td>
                         <button class="btn btn-danger btn-sm btn-change-role" onclick="handleChangeRole(this)" data-id="{{ $user->id }}" data-role="$admin">Make Admin</button>
