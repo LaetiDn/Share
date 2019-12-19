@@ -17,7 +17,7 @@ class UsersController extends Controller
 
     public function changeUserRole(Request $request, User $user)
     {
-        $user->roles()->attach($request->roles);
+        $user->assignRole($request->roles);
 
         session()->flash('success', 'User role changed successfully');
 
